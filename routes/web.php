@@ -31,6 +31,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     // Products
     Route::resource('products', AdminProductController::class);
     
+    Route::get('/products/search', [AdminProductController::class, 'search']);
+    
     // Articles
     Route::resource('articles', AdminArticleController::class);
     

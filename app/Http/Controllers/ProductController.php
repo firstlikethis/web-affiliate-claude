@@ -96,4 +96,30 @@ class ProductController extends Controller
         
         return redirect()->route('redirect.affiliate', ['product' => $product->slug]);
     }
+
+    /**
+     * Search products by name or description.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function search(Request $request)
+    {
+        $query = $request->input('q');
+        
+        if (!$query || strlen($query) < 2) {
+            return response()->json([]);
+        }
+        
+        $products = Product::where(function($q) use ($query) {
+                $q->where('name', 'like', '%' . $query . '%')
+                ->orWhere('description', 'like', '%' . $query . '%');
+            })
+            ->select('id', 'name', 'slug', 'image', 'price', 'discount_price', 'platform')
+            ->orderBy('name')
+            ->limit(10)
+            ->get();
+        
+        return response()->json($products);
+    }
 }
