@@ -49,6 +49,86 @@ affiliate-website/
 └── routes/
     └── web.php
 
+# ขั้นตอนการสร้าง Views
+
+ต่อไปนี้คือรายการของไฟล์ Views ที่จำเป็นต้องสร้างตามโครงสร้างที่วางแผนไว้:
+
+## 1. Layouts
+```
+resources/views/layouts/
+├── app.blade.php         # สำหรับหน้าบ้าน
+├── admin.blade.php       # สำหรับหลังบ้าน
+└── auth.blade.php        # สำหรับหน้า login/register
+```
+
+## 2. Components
+```
+resources/views/components/
+├── header.blade.php
+├── footer.blade.php
+├── sidebar.blade.php      # สำหรับเมนูหลังบ้าน
+├── product-card.blade.php
+├── article-card.blade.php
+├── pagination.blade.php
+├── alerts.blade.php       # สำหรับแสดงข้อความแจ้งเตือน
+└── search-form.blade.php
+```
+
+## 3. หน้าบ้าน (Frontend)
+```
+resources/views/
+├── home/
+│   ├── index.blade.php
+│   ├── category-products.blade.php
+│   ├── category-articles.blade.php
+│   ├── tag.blade.php
+│   └── search.blade.php
+├── products/
+│   └── index.blade.php
+└── articles/
+    ├── index.blade.php
+    └── show.blade.php
+```
+
+## 4. หลังบ้าน (Admin)
+```
+resources/views/admin/
+├── dashboard/
+│   └── index.blade.php
+├── products/
+│   ├── index.blade.php
+│   ├── create.blade.php
+│   ├── edit.blade.php
+│   └── show.blade.php
+├── articles/
+│   ├── index.blade.php
+│   ├── create.blade.php
+│   ├── edit.blade.php
+│   └── show.blade.php
+├── categories/
+│   ├── index.blade.php
+│   ├── create.blade.php
+│   ├── edit.blade.php
+│   └── show.blade.php
+├── tags/
+│   ├── index.blade.php
+│   ├── create.blade.php
+│   ├── edit.blade.php
+│   └── show.blade.php
+└── users/
+    ├── index.blade.php
+    ├── create.blade.php
+    ├── edit.blade.php
+    └── show.blade.php
+```
+
+## 5. Authentication
+```
+resources/views/auth/
+├── login.blade.php
+└── register.blade.php
+```
+
 # ติดตั้ง Laravel และสร้างโปรเจค
 composer create-project laravel/laravel affiliate-website
 
