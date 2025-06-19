@@ -58,10 +58,10 @@ Route::get('/articles/{article:slug}', [ArticleController::class, 'show'])->name
 Route::get('/go/{product:slug}', [RedirectController::class, 'redirectToAffiliate'])->name('redirect.affiliate');
 
 // Category pages
-Route::get('/category/{category:slug}', [HomeController::class, 'category'])->name('category.show');
+Route::get('/category/{category?}', [HomeController::class, 'category'])->name('category.show');
 
 // Tag pages
-Route::get('/tag/{tag:slug}', [HomeController::class, 'tag'])->name('tag.show');
+Route::get('/tag/{tag?}', [HomeController::class, 'tag'])->name('tag.show');
 
 // Search
 Route::get('/search', [HomeController::class, 'search'])->name('search');

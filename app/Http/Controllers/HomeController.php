@@ -65,10 +65,15 @@ class HomeController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\View\View
      */
-    public function category(Category $category)
+    public function category(Category $category = null)
     {
+        if (!$category) {
+            // จัดการกรณีที่ไม่มีพารามิเตอร์ - เช่น แสดงรายการหมวดหมู่ทั้งหมด หรือ redirect ไปหน้าหลัก
+            return redirect()->route('home');
+        }
+
+        // โค้ดเดิม...
         if ($category->type === 'product') {
-            // แสดงสินค้าในหมวดหมู่
             $products = Product::with(['category', 'tags'])
                 ->where('category_id', $category->id)
                 ->orderBy('created_at', 'desc')
@@ -76,7 +81,6 @@ class HomeController extends Controller
             
             return view('home.category-products', compact('category', 'products'));
         } else {
-            // แสดงบทความในหมวดหมู่
             $articles = Article::with(['category', 'user', 'tags'])
                 ->where('category_id', $category->id)
                 ->where('is_published', true)
@@ -94,9 +98,14 @@ class HomeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\View\View
      */
-    public function tag(Tag $tag, Request $request)
+    public function tag(Tag $tag = null, Request $request)
     {
-        // กรองประเภทที่ต้องการแสดง (products, articles, หรือทั้งสอง)
+        if (!$tag) {
+            // จัดการกรณีที่ไม่มีพารามิเตอร์ - เช่น แสดงรายการแท็กทั้งหมด หรือ redirect ไปหน้าหลัก
+            return redirect()->route('home');
+        }
+
+        // โค้ดเดิม...
         $type = $request->input('type', 'all');
         
         if ($type === 'products' || $type === 'all') {
