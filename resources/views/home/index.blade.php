@@ -20,7 +20,8 @@
                     </div>
                 </div>
                 <div class="md:w-1/2">
-                    <img src="{{ asset('images/hero-image.jpg') }}" alt="Hero Image" class="rounded-lg shadow-lg w-full" onerror="this.src='https://via.placeholder.com/600x400?text=Hero+Image'">
+                    <img src="{{ asset('images/hero-image.jpg') }}" alt="Hero Image" class="rounded-lg shadow-lg w-full" 
+                        onerror="this.src='https://picsum.photos/600/400?text=Hero+Image'">
                 </div>
             </div>
         </div>

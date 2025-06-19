@@ -42,7 +42,7 @@ class Category extends Model
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeProducts($query)
+    public static function scopeProducts($query)
     {
         return $query->where('type', 'product');
     }
@@ -53,7 +53,7 @@ class Category extends Model
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeArticles($query)
+    public static function scopeArticles($query)
     {
         return $query->where('type', 'article');
     }

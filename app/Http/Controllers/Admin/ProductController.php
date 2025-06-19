@@ -45,7 +45,7 @@ class ProductController extends Controller
         $query->orderBy($orderBy, $orderDirection);
         
         $products = $query->paginate(15)->withQueryString();
-        $categories = Category::products()->get();
+        $categories = Category::query()->products()->get();
         
         return view('admin.products.index', compact('products', 'categories'));
     }
@@ -57,7 +57,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $categories = Category::products()->get();
+        $categories = Category::query()->products()->get();
         $tags = Tag::orderBy('name')->get();
         
         return view('admin.products.create', compact('categories', 'tags'));
@@ -118,7 +118,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        $categories = Category::products()->get();
+        $categories = Category::query()->products()->get();
         $tags = Tag::orderBy('name')->get();
         $selectedTags = $product->tags->pluck('id')->toArray();
         

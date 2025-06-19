@@ -47,7 +47,7 @@ class ArticleController extends Controller
         $query->orderBy($orderBy, $orderDirection);
         
         $articles = $query->paginate(15)->withQueryString();
-        $categories = Category::articles()->get();
+        $categories = Category::query()->articles()->get();
         
         return view('admin.articles.index', compact('articles', 'categories'));
     }
@@ -59,7 +59,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        $categories = Category::articles()->get();
+        $categories = Category::query()->articles()->get();
         $tags = Tag::orderBy('name')->get();
         
         return view('admin.articles.create', compact('categories', 'tags'));
@@ -123,7 +123,7 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        $categories = Category::articles()->get();
+        $categories = Category::query()->articles()->get();
         $tags = Tag::orderBy('name')->get();
         $selectedTags = $article->tags->pluck('id')->toArray();
         
