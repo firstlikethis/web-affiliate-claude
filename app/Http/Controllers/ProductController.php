@@ -68,7 +68,7 @@ class ProductController extends Controller
         }
         
         $products = $query->paginate(12)->withQueryString();
-        $categories = Category::products()->get();
+        $categories = Category::query()->products()->get();
         $tags = Tag::withCount('products')
             ->having('products_count', '>', 0)
             ->orderBy('name')

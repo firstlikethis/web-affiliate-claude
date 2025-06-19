@@ -52,7 +52,7 @@ class ArticleController extends Controller
         }
         
         $articles = $query->paginate(9)->withQueryString();
-        $categories = Category::articles()->get();
+        $categories = Category::query()->articles()->get();
         $tags = Tag::withCount('articles')
             ->having('articles_count', '>', 0)
             ->orderBy('name')

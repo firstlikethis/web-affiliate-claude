@@ -38,7 +38,7 @@ class HomeController extends Controller
             ->get();
         
         // หมวดหมู่สินค้ายอดนิยม
-        $popularProductCategories = Category::products()
+        $popularProductCategories = Category::query()->products()
             ->withCount('products')
             ->orderBy('products_count', 'desc')
             ->take(6)
